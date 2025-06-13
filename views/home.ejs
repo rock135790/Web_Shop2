@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html lang="hr">
+  <head>
+    <title>WEB_lab</title>
+    <script src="scripts/data.js"></script>
+    <script src="scripts/script_main.js" defer></script>
+    <link rel="stylesheet" href="styles/styles_main.css" />
+    <link rel="icon" type="image/x-icon" href="images/logo.png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+
+  <body>
+    <div class="grid-wrapper">
+      <div class="logo"><img src="images/logo.png" alt="Logo" /></div>
+      <div class="current-category"><h1></h1></div>
+      <div class="cart-search-wrapper">
+        <div class="cart-amount-wrapper">
+          <button onclick="beforeNavigating()">
+            <img src="images/kosarica.png" alt="Košarica" />
+          </button>
+          <p class="amount">0</p>
+        </div>
+        <div class="search">
+          <img src="images/trazilica.png" alt="Tražilica" />
+        </div>
+      </div>
+      <ul class="category-menu">
+        <li>
+          <button onclick="switchCategory(0)">Penjanje</button>
+        </li>
+        <li>
+          <button onclick="switchCategory(1)">Planinarenje</button>
+        </li>
+        <li>
+          <button onclick="switchCategory(2)">Plivanje</button>
+        </li>
+        <li>
+          <button onclick="switchCategory(3)">Dizanje utega</button>
+        </li>
+        <li>
+          <button onclick="switchCategory(4)">Veslanje</button>
+        </li>
+        <li>
+          <button onclick="switchCategory(5)">Tenis</button>
+        </li>
+        <li>
+          <button onclick="switchCategory(6)">Skijanje</button>
+        </li>
+        <li>
+          <button onclick="switchCategory(7)">Biciklizam</button>
+        </li>
+        <li>
+          <button onclick="switchCategory(8)">Kanjoning</button>
+        </li>
+        <li>
+          <button onclick="switchCategory(9)">Surfanje</button>
+        </li>
+      </ul>
+      <div class="hello-wrapper">
+        <h1 class="hello-text">DOBRODOŠLI U DUĆAN SPORTSKE OPREME ACTION</h1>
+        <img class="page-image" src="images/pozadina.jpg" alt="Pozadina" />
+      </div>
+      <div class="info">
+        <p>KONTAKT</p>
+        <p>NEWSLETTER</p>
+        <p>PRETPLATI SE</p>
+      </div>
+      <div class="products-wrapper"></div>
+    </div>
+  </body>
+</html>

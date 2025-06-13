@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html lang="hr">
+  <head>
+    <title>WEB_lab</title>
+    <script src="scripts/data.js"></script>
+    <script src="scripts/script_cart.js" defer></script>
+    <link rel="stylesheet" href="styles/styles_cart.css" />
+    <link rel="icon" type="image/x-icon" href="images/logo.png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+
+  <body>
+    <div class="header-wrapper">
+      <div class="logo"><img src="images/logo.png" alt="Logo" /></div>
+      <div class="break"></div>
+      <div class="current-category"><h1></h1></div>
+      <div class="cart-search-wrapper">
+        <div class="cart">
+          <button onclick="beforeNavigating()">
+            <img src="images/kosarica.png" alt="Košarica" />
+          </button>
+          <p class="cart-amount"></p>
+        </div>
+        <div class="search">
+          <img src="images/trazilica.png" alt="Tražilica" />
+        </div>
+      </div>
+    </div>
+    <div class="cart-header-wrapper">
+      <h2 class="cart-header">KOŠARICA</h2>
+      <button onclick="emptyCart()"><p>ISPRAZNI KOŠARICU</p></button>
+    </div>
+    <div class="first-row-wrapper">
+      <h3>NAZIV PROIZVODA</h3>
+      <h3>KOLIČINA</h3>
+    </div>
+    <div class="display-wrapper"></div>
+  </body>
+</html>
