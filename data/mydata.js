@@ -2,31 +2,38 @@ const data = {
         website: "Sportska oprema",
         categories: [
           {
+            id: 0,
             name: "Penjanje",
             products: [
               {
                 name: "Penjačice",
                 image: "penjacice.jpg",
+                amount: 0,
               },
               {
                 name: "Konop",
                 image: "konop.jpg",
+                amount: 0,
               },
               {
                 name: "Magnezij",
                 image: "magnezij.jpg",
+                amount: 0,
               },
               {
                 name: "Vrećica za magnezij",
                 image: "vrecica_za_magnezij.jpg",
+                amount: 0,
               },
               {
                 name: "Ukapčanja",
                 image: "ukapcanja.jpg",
+                amount: 0,
               },
             ],
           },
           {
+            id: 1,
             name: "Planinarenje",
             products: [
               {
@@ -52,6 +59,7 @@ const data = {
             ],
           },
           {
+            id: 2,
             name: "Plivanje",
             products: [
               {
@@ -77,6 +85,7 @@ const data = {
             ],
           },
           {
+            id: 3,
             name: "Dizanje utega",
             products: [
               {
@@ -102,6 +111,7 @@ const data = {
             ],
           },
           {
+            id: 4,
             name: "Veslanje",
             products: [
               {
@@ -127,6 +137,7 @@ const data = {
             ],
           },
           {
+            id: 5,
             name: "Tenis",
             products: [
               {
@@ -152,6 +163,7 @@ const data = {
             ],
           },
           {
+            id: 6,
             name: "Skijanje",
             products: [
               {
@@ -177,6 +189,7 @@ const data = {
             ],
           },
           {
+            id: 7,
             name: "Biciklizam",
             products: [
               {
@@ -202,6 +215,7 @@ const data = {
             ],
           },
           {
+            id: 8,
             name: "Kanjoning",
             products: [
               {
@@ -227,6 +241,7 @@ const data = {
             ],
           },
           {
+            id: 9,
             name: "Surfanje",
             products: [
               {
@@ -253,4 +268,6 @@ const data = {
           },
         ],
       };
+
+module.exports = data;
       

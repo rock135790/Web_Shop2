@@ -4,7 +4,7 @@
   <head>
     <title>WEB_lab</title>
     <link rel="stylesheet" href="/styles/styles_main.css" />
-    <link rel="icon" type="image/x-icon" href="/images/logo.png" />
+    <link rel="icon" type="image/x-icon" href="images/logo.png" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
@@ -13,7 +13,7 @@
     <div class="grid-wrapper">
       <div class="logo"><img src="/images/logo.png" alt="Logo" /></div>
       <div class="current-category">
-        <h1><%=naslov%></h1>
+        <h1><%=data.categories[id].name%></h1>
       </div>
       <div class="cart-search-wrapper">
         <div class="cart-amount-wrapper">
@@ -43,7 +43,23 @@
         <p>PRETPLATI SE</p>
       </div>
       <div class="products-wrapper">
-        <p>Dobrodošao!</p>
+        <% for(product of data.categories[id].products) { %>
+        <figure>
+          <div class="product-cart-amount-wrapper">
+            <img src="/images/<%=product.image%>" alt="<%=product.name%>" />
+            <button>
+              <img src="/images/zuta_kosarica.jpg" alt="Košarica" />
+            </button>
+            <p class="product-amount" id="<%=product.name%>">
+              <%=product.amount%>
+            </p>
+          </div>
+          <figcaption>
+            PROIZVOD: <%=product.name%><br />
+            KATEGORIJA: <%=data.categories[id].name%>
+          </figcaption>
+        </figure>
+        <% } %>
       </div>
     </div>
   </body>

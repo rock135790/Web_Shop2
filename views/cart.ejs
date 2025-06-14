@@ -3,8 +3,6 @@
 <html lang="hr">
   <head>
     <title>WEB_lab</title>
-    <script src="scripts/data.js"></script>
-    <script src="scripts/script_cart.js" defer></script>
     <link rel="stylesheet" href="styles/styles_cart.css" />
     <link rel="icon" type="image/x-icon" href="images/logo.png" />
     <meta charset="UTF-8" />
@@ -15,12 +13,12 @@
     <div class="header-wrapper">
       <div class="logo"><img src="images/logo.png" alt="Logo" /></div>
       <div class="break"></div>
-      <div class="current-category"><h1></h1></div>
+      <div class="current-category"><h1>ACTION</h1></div>
       <div class="cart-search-wrapper">
         <div class="cart">
-          <button onclick="beforeNavigating()">
+          <a href="/home/getCategories">
             <img src="images/kosarica.png" alt="Košarica" />
-          </button>
+          </a>
           <p class="cart-amount"></p>
         </div>
         <div class="search">
