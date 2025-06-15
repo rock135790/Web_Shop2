@@ -18,17 +18,25 @@ function remover(req, res, next) {
         next();
 }
 
+function dump(req, res, next) {
+	req.session.cart = {};
+	next();
+}
+
 router.use(logger);
 
 router.get('/getAll', (req, res) => {
 	const cart = req.session.cart || {};
-    res.render('cart.ejs', {cart});
+    res.render('cart', {cart});
 });
 router.get('/add/:id', adder, (req, res) => {
-        res.render('cart.ejs');
+        res.render('cart');
 });
 router.get('/remove/:id', remover, (req, res) => {
-        res.render('cart.ejs');
+        res.render('cart');
+});
+router.get('/removeAll', dump, (req, res) => {
+	res.render('cart', {cart: req.session.cart});
 });
 router.post('/save', (req, res) => {
     let cart = req.body;

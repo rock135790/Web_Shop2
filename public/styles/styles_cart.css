@@ -75,7 +75,7 @@ button:active {
   .current-category {
     font-size: medium;
   }
-  .cart-header-wrapper button {
+  .cart-header-wrapper a {
     font-size: x-small;
   }
   .display {
@@ -180,7 +180,7 @@ button:active {
   width: 100%;
   text-align: center;
 }
-.cart-header-wrapper button {
+.cart-header-wrapper a {
   position: absolute;
   right: 3%;
   bottom: 3%;
@@ -188,6 +188,9 @@ button:active {
   border-radius: 1rem;
   cursor: pointer;
   color: black;
+  text-decoration: none;
+  background-color: beige;
+  padding: 4px;
 }
 .first-row-wrapper {
   width: 100%;
@@ -217,16 +220,16 @@ button:active {
   margin-top: 0.5rem;
   padding: 0 1rem;
 }
-.amount {
+.product-amount {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0.1rem 0rem;
 }
-.amount p {
+.product-amount p {
   margin: 0rem 0.5rem;
 }
-.amount button {
+.product-amount button {
   border-radius: 1rem;
   padding: 0.3rem 0.6rem;
   border: 1px solid white;

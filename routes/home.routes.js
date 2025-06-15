@@ -12,13 +12,23 @@ function logger(req, res, next) {
 
 router.use(logger);
 
-router.get('/getCategories', (req, res) => {
-        res.render('home.ejs', { naslov: 'ACTION', data: data});
+function getTotalAmount(req, res, next) {
+    let total = 0;
+    if(req.session.cart)
+        total = req.session.cart.total || 0;
+    req.total = total;
+    next();
+}
+
+router.get('/getCategories', getTotalAmount, (req, res) => {
+    console.log(req.total);
+        res.render('home.ejs', { naslov: 'ACTION', data: data, total: req.total});
 });
 
 function getProductAmounts(req, res, next) {
     let amounts = {};
     let cart = req.session.cart || {};
+    amounts.total = cart.total || 0;
     const category = data.categories[req.params.id];
 
     if (!category || !Array.isArray(category.products)) {
@@ -38,6 +48,7 @@ router.get('/getProducts/:id', getProductAmounts, (req, res) => {
             console.log(`Validation failed: ID parameter "${req.params.id}" is not a number.`);
             return res.status(400).send('<h1>Bad Request</h1><p>Product ID must be a number.</p>');
         }
+        console.log(req.amounts);
         const reqId = parseInt(req.params.id);
         if(typeof(data.categories[reqId]) === 'undefined') res.status(404).send('FAIL');
         else {

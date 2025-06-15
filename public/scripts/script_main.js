@@ -1,5 +1,5 @@
 window.addEventListener('load', function () {
-    let cartAmount = document.getElementsByClassName('amount');
+    let cartAmount = document.getElementById('amount');
     if(parseInt(cartAmount.innerHTML) > 0) cartAmount.style.visibility = 'visible';
     for(const productAmount of document.getElementsByClassName('product-amount')) {
         if(parseInt(productAmount.innerHTML) > 0) productAmount.style.visibility = 'visible';
@@ -8,14 +8,24 @@ window.addEventListener('load', function () {
 
 let cart = {};
 function addToCart(productName) {
-    let element = document.getElementById(productName);
-    if (parseInt(element.innerHTML) == 0) {
-        cart[productName] = 1;
-        document.getElementById(productName).style.visibility = 'visible';
-    } else {
-        cart[productName] = parseInt(element.innerHTML) + 1;
+    let cartAmount = document.getElementById('amount');
+    if(parseInt(cartAmount.innerHTML) == 0) {
+        cart.total = 1;
+        cartAmount.style.visibility = 'visible';
+        cartAmount.innerHTML = 1;
     }
-    element.innerHTML = cart[productName];
+    else {
+        cart.total = parseInt(cartAmount.innerHTML) + 1;
+        cartAmount.innerHTML = cart.total;
+    }
+    let productAmount = document.getElementById(productName);
+    if (parseInt(productAmount.innerHTML) == 0) {
+        cart[productName] = 1;
+        productAmount.style.visibility = 'visible';
+    } else {
+        cart[productName] = parseInt(productAmount.innerHTML) + 1;
+    }
+    productAmount.innerHTML = cart[productName];
     console.log(cart);   
 }
 
