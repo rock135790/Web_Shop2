@@ -172,6 +172,7 @@ button:active {
   align-items: center;
   background-color: rgba(255, 0, 0, 0.806);
   color: white;
+  visibility: hidden;
 }
 .search {
   width: min(50%, 6rem);
@@ -281,6 +282,7 @@ figure {
   align-items: center;
   background-color: red;
   color: white;
+  visibility: hidden;
 }
 .products-wrapper figcaption {
   height: 20%;

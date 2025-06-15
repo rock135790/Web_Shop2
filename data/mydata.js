@@ -8,27 +8,22 @@ const data = {
               {
                 name: "Penjačice",
                 image: "penjacice.jpg",
-                amount: 0,
               },
               {
                 name: "Konop",
                 image: "konop.jpg",
-                amount: 0,
               },
               {
                 name: "Magnezij",
                 image: "magnezij.jpg",
-                amount: 0,
               },
               {
                 name: "Vrećica za magnezij",
                 image: "vrecica_za_magnezij.jpg",
-                amount: 0,
               },
               {
                 name: "Ukapčanja",
                 image: "ukapcanja.jpg",
-                amount: 0,
               },
             ],
           },

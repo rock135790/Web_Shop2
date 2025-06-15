@@ -3,26 +3,26 @@
 <html lang="hr">
   <head>
     <title>WEB_lab</title>
-    <link rel="stylesheet" href="styles/styles_cart.css" />
-    <link rel="icon" type="image/x-icon" href="images/logo.png" />
+    <link rel="stylesheet" href="/styles/styles_cart.css" />
+    <link rel="icon" type="image/x-icon" href="/images/logo.png" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
 
   <body>
     <div class="header-wrapper">
-      <div class="logo"><img src="images/logo.png" alt="Logo" /></div>
+      <div class="logo"><img src="/images/logo.png" alt="Logo" /></div>
       <div class="break"></div>
       <div class="current-category"><h1>ACTION</h1></div>
       <div class="cart-search-wrapper">
         <div class="cart">
           <a href="/home/getCategories">
-            <img src="images/kosarica.png" alt="Košarica" />
+            <img src="/images/kosarica.png" alt="Košarica" />
           </a>
           <p class="cart-amount"></p>
         </div>
         <div class="search">
-          <img src="images/trazilica.png" alt="Tražilica" />
+          <img src="/images/trazilica.png" alt="Tražilica" />
         </div>
       </div>
     </div>
@@ -34,6 +34,19 @@
       <h3>NAZIV PROIZVODA</h3>
       <h3>KOLIČINA</h3>
     </div>
-    <div class="display-wrapper"></div>
+    <div class="display-wrapper">
+      <% for(let product in cart) {%>
+      <div class="display">
+        <div class="product">
+          <p><%=product%></p>
+        </div>
+        <div class="amount">
+          <button onclick="decreaseProductAmount('${product}')">-</button>
+          <p><%=cart[product]%></p>
+          <button onclick="increaseProductAmount('${product}')">+</button>
+        </div>
+      </div>
+      <%}%>
+    </div>
   </body>
 </html>

@@ -3,6 +3,7 @@
 <html lang="hr">
   <head>
     <title>WEB_lab</title>
+    <script src="/scripts/script_main.js"></script>
     <link rel="stylesheet" href="/styles/styles_main.css" />
     <link rel="icon" type="image/x-icon" href="images/logo.png" />
     <meta charset="UTF-8" />
@@ -17,7 +18,7 @@
       </div>
       <div class="cart-search-wrapper">
         <div class="cart-amount-wrapper">
-          <a href="/cart">
+          <a href="/cart/getAll">
             <img src="/images/kosarica.png" alt="Košarica" />
           </a>
           <p class="amount">0</p>
@@ -29,7 +30,7 @@
       <ul class="category-menu">
         <%for(category of data.categories) {%>
         <li>
-          <a href="/home/<%=category.name%>"><%=category.name%></a>
+          <a href="/home/getProducts/<%=category.id%>"><%=category.name%></a>
         </li>
         <%}%>
       </ul>
@@ -47,11 +48,11 @@
         <figure>
           <div class="product-cart-amount-wrapper">
             <img src="/images/<%=product.image%>" alt="<%=product.name%>" />
-            <button>
+            <button onclick="addToCart('<%=product.name%>')">
               <img src="/images/zuta_kosarica.jpg" alt="Košarica" />
             </button>
             <p class="product-amount" id="<%=product.name%>">
-              <%=product.amount%>
+              <%=amounts[product.name]%>
             </p>
           </div>
           <figcaption>

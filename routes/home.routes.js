@@ -1,28 +1,50 @@
 const express = require('express');
+const session = require('express-session');
 
 const router = express.Router();
 const data = require('../data/mydata.js');
 
+function logger(req, res, next) {
+    console.log('Received a request for: ' + req.originalUrl);
+    console.log(req.session.cart);
+    next();
+}
+
+router.use(logger);
+
 router.get('/getCategories', (req, res) => {
-        console.log('Received a request for the home page!');
         res.render('home.ejs', { naslov: 'ACTION', data: data});
 });
-router.get('/:id', (req, res) => {
-        const reqId = req.params.id;
-        let page = 'FAIL';
-        let catId = -1;
-        for(category of data.categories) {
-            if(reqId === category.name) {
-                page = category.name;
-                catId = category.id;
-                break;
-            }
+
+function getProductAmounts(req, res, next) {
+    let amounts = {};
+    let cart = req.session.cart || {};
+    const category = data.categories[req.params.id];
+
+    if (!category || !Array.isArray(category.products)) {
+        console.warn(`Category with id ${req.params.id} not found or invalid.`);
+        return res.status(404).send('Category not found');
+    }
+    for(product of category.products) {
+        if(!cart[product.name]) amounts[product.name] = 0;
+        else amounts[product.name] = cart[product.name];
+    }
+    req.amounts = amounts;
+    next();
+}
+
+router.get('/getProducts/:id', getProductAmounts, (req, res) => {
+        if (!/^(0|[1-9]\d{0,9})$/.test(req.params.id)) {
+            console.log(`Validation failed: ID parameter "${req.params.id}" is not a number.`);
+            return res.status(400).send('<h1>Bad Request</h1><p>Product ID must be a number.</p>');
         }
-        console.log('Received a request for ' + reqId + ' at ' + catId);
-        if(page === 'FAIL') res.status(404).send(page);
-        else{
-            res.render('categories.ejs', {data: data, id: catId});
-        }
+        const reqId = parseInt(req.params.id);
+        if(typeof(data.categories[reqId]) === 'undefined') res.status(404).send('FAIL');
+        else {
+            let catName = data.categories[reqId].name;
+            console.log(catName);
+            res.render('categories.ejs', {data: data, id: reqId, amounts: req.amounts});
+        }  
 });
 
 module.exports = router;
