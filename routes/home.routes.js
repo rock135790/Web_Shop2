@@ -1,16 +1,7 @@
 const express = require('express');
-const session = require('express-session');
 
 const router = express.Router();
 const data = require('../data/mydata.js');
-
-function logger(req, res, next) {
-    console.log('Received a request for: ' + req.originalUrl);
-    console.log(req.session.cart);
-    next();
-}
-
-router.use(logger);
 
 function getTotalAmount(req, res, next) {
     let total = 0;
@@ -20,11 +11,18 @@ function getTotalAmount(req, res, next) {
     next();
 }
 
-router.get('/getCategories', getTotalAmount, (req, res) => {
-    console.log(req.total);
-        res.render('home.ejs', { naslov: 'ACTION', data: data, total: req.total});
-});
-
+function checkId(req, res, next) {
+    if (!/^(\d*)$/.test(req.params.id)) {
+        return res.status(400).send('<h1>Bad Request</h1><p>Category ID must be a number.</p>');
+    }
+    else if (!/^(\d{1,10})$/.test(req.params.id)) {
+        return res.status(400).send('<h1>Bad Request</h1><p>Category ID must be at most 10 digits.</p>');
+    }
+    else if (!/^(0|[1-9]\d{0,9})$/.test(req.params.id)) {
+        return res.status(400).send('<h1>Bad Request</h1><p>Category ID can\'t have leading zeroes.</p>');
+    }
+    else next();
+}
 function getProductAmounts(req, res, next) {
     let amounts = {};
     let cart = req.session.cart || {};
@@ -32,8 +30,7 @@ function getProductAmounts(req, res, next) {
     const category = data.categories[req.params.id];
 
     if (!category || !Array.isArray(category.products)) {
-        console.warn(`Category with id ${req.params.id} not found or invalid.`);
-        return res.status(404).send('Category not found');
+        return res.status(400).send('<h1>Bad Request</h1><p>Category ID not in database.</p>');
     }
     for(product of category.products) {
         if(!cart[product.name]) amounts[product.name] = 0;
@@ -43,17 +40,15 @@ function getProductAmounts(req, res, next) {
     next();
 }
 
-router.get('/getProducts/:id', getProductAmounts, (req, res) => {
-        if (!/^(0|[1-9]\d{0,9})$/.test(req.params.id)) {
-            console.log(`Validation failed: ID parameter "${req.params.id}" is not a number.`);
-            return res.status(400).send('<h1>Bad Request</h1><p>Product ID must be a number.</p>');
-        }
-        console.log(req.amounts);
+router.get('/getCategories', getTotalAmount, (req, res) => {
+    res.render('home.ejs', { naslov: 'ACTION', data: data, total: req.total});
+});
+
+router.get('/getProducts/:id', checkId, getProductAmounts, (req, res) => {
         const reqId = parseInt(req.params.id);
         if(typeof(data.categories[reqId]) === 'undefined') res.status(404).send('FAIL');
         else {
             let catName = data.categories[reqId].name;
-            console.log(catName);
             res.render('categories.ejs', {data: data, id: reqId, amounts: req.amounts});
         }  
 });

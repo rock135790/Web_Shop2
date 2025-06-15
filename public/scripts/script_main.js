@@ -30,7 +30,6 @@ function addToCart(productName) {
 }
 
 window.addEventListener('beforeunload', function () {
-    // Use navigator.sendBeacon for sending data asynchronously on unload
     console.log('/cart/save');
     const data = JSON.stringify(cart);
     const blob = new Blob([data], { type: 'application/json' });

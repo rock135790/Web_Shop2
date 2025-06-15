@@ -20,7 +20,7 @@ button:active {
   .current-category {
     font-size: larger;
   }
-  .category-menu button {
+  .category-menu a {
     font-size: medium;
   }
   .hello-text {
@@ -54,7 +54,7 @@ button:active {
   .current-category {
     font-size: large;
   }
-  .category-menu button {
+  .category-menu a {
     font-size: small;
   }
   .hello-text {
@@ -87,7 +87,7 @@ button:active {
   .current-category {
     font-size: medium;
   }
-  .category-menu button {
+  .category-menu a {
     font-size: 10px;
   }
   .hello-text {
@@ -198,12 +198,13 @@ button:active {
   overflow: hidden;
 }
 .category-menu a {
+  display: inline-block;
   background-color: lightblue;
   text-decoration: none;
   color: black;
   border: none;
   margin-left: 1px;
-  padding: 4px;
+  padding: 1px 3px;
   cursor: pointer;
 }
 .category-menu a:hover {

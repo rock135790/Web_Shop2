@@ -192,6 +192,9 @@ button:active {
   background-color: beige;
   padding: 4px;
 }
+.cart-header-wrapper a:hover {
+  background-color: #e0e0e0; 
+}
 .first-row-wrapper {
   width: 100%;
   display: flex;
@@ -229,12 +232,18 @@ button:active {
 .product-amount p {
   margin: 0rem 0.5rem;
 }
-.product-amount button {
+.product-amount a {
   border-radius: 1rem;
-  padding: 0.3rem 0.6rem;
+  padding: 0.2rem 0.6rem;
+  margin: 2px 0px;
   border: 1px solid white;
+  background-color: white;
   cursor: pointer;
   font-weight: bold;
   color: black;
-  transition: background-color 0.2s ease, transform 0.1s ease;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+.product-amount a:hover {
+  background-color: #e0e0e0;
 }

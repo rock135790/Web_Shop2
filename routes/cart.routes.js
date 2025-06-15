@@ -2,20 +2,23 @@ const express = require('express');
 
 const router = express.Router();
 
-function logger(req, res, next) {
-        console.log('Received a request for: ' + req.originalUrl);
-		console.log(req.session.cart);
-        next();
-}
-
 function adder(req, res, next) {
-        console.log('Added 1 product to cart (id=' + req.params.id + ')');
-        next();
+	if(req.session.cart && req.session.cart[req.params.id]) {
+		req.session.cart['total']++;
+		req.session.cart[req.params.id]++;
+		next();
+	}
+	else res.status(204).end();
 }
 
 function remover(req, res, next) {
-        console.log('Removed 1 product from cart (id=' + req.params.id + ')');
-        next();
+	if(req.session.cart && req.session.cart[req.params.id]) {
+		req.session.cart['total']--;
+		req.session.cart[req.params.id]--;
+		if(req.session.cart[req.params.id] == 0) delete req.session.cart[req.params.id];
+		next();
+	}
+	else res.status(204).end();
 }
 
 function dump(req, res, next) {
@@ -23,17 +26,17 @@ function dump(req, res, next) {
 	next();
 }
 
-router.use(logger);
-
-router.get('/getAll', (req, res) => {
+router.get(['/', '/getAll'], (req, res) => {
 	const cart = req.session.cart || {};
     res.render('cart', {cart});
 });
 router.get('/add/:id', adder, (req, res) => {
-        res.render('cart');
+	const cart = req.session.cart || {};
+    res.render('cart', {cart});
 });
 router.get('/remove/:id', remover, (req, res) => {
-        res.render('cart');
+    const cart = req.session.cart || {};
+    res.render('cart', {cart});
 });
 router.get('/removeAll', dump, (req, res) => {
 	res.render('cart', {cart: req.session.cart});
@@ -46,7 +49,6 @@ router.post('/save', (req, res) => {
 			req.session.cart[p] = cart[p];
 		}
 	}
-	console.log(req.session.cart);
 	res.status(204).end();
 });
 

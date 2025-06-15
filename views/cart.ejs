@@ -42,9 +42,9 @@
           <p><%=product%></p>
         </div>
         <div class="product-amount">
-          <button onclick="decreaseProductAmount('${product}')">-</button>
+          <a href="/cart/remove/<%=product%>">-</a>
           <p><%=cart[product]%></p>
-          <button onclick="increaseProductAmount('${product}')">+</button>
+          <a href="/cart/add/<%=product%>">+</a>
         </div>
       </div>
       <%}}%>
