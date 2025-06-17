@@ -1,39 +1,35 @@
 <!DOCTYPE html>
 
 <html lang="hr">
-  <head>
-    <title>WEB_lab</title>
-    <script src="/scripts/script_main.js"></script>
-    <link rel="stylesheet" href="/styles/styles_main.css" />
-    <link rel="icon" type="image/x-icon" href="/images/logo.png" />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  </head>
+  <%- include('partials/header') %>
 
   <body>
-    <div class="grid-wrapper">
-      <div class="logo"><img src="/images/logo.png" alt="Logo" /></div>
-      <div class="current-category">
-        <h1>ACTION</h1>
-      </div>
-      <div class="cart-search-wrapper">
-        <div class="cart-amount-wrapper">
-          <a href="/cart/getAll">
-            <img src="/images/kosarica.png" alt="Košarica" />
-          </a>
-          <p id="amount"></p>
+    <main>
+      <div class="grid-wrapper">
+        <div class="logo"><img src="/images/logo.png" alt="Logo" /></div>
+        <div class="current-category">
+          <h1>ACTION</h1>
         </div>
-        <div class="search">
-          <img src="/images/trazilica.png" alt="Tražilica" />
+        <div class="cart-search-wrapper">
+          <div class="cart-amount-wrapper">
+            <a href="/cart/getAll">
+              <img src="/images/kosarica.png" alt="Košarica" />
+            </a>
+            <p id="amount"></p>
+          </div>
+          <div class="search">
+            <img src="/images/trazilica.png" alt="Tražilica" />
+          </div>
+        </div>
+        <div class="hello-wrapper">
+          <h3>
+            <%if(count == 1){%> Ovo je tvoj 1. posjet, dobrodošao! <%}else{%>
+            Ovo je tvoj <%=count%>. posjet, dobrodošao natrag! <%}%>
+            <a href="/home/getCategories">DOHVATI KATEGORIJE</a>
+          </h3>
         </div>
       </div>
-      <div class="hello-wrapper">
-        <h3>
-          <%if(count == 1){%> Ovo je tvoj 1. posjet, dobrodošao! <%}else{%> Ovo
-          je tvoj <%=count%>. posjet, dobrodošao natrag! <%}%>
-          <a href="/home/getCategories">DOHVATI KATEGORIJE</a>
-        </h3>
-      </div>
-    </div>
+    </main>
+    <%- include('partials/footer') %>
   </body>
 </html>

@@ -1,49 +1,45 @@
 <!DOCTYPE html>
 
 <html lang="hr">
-  <head>
-    <title>WEB_lab</title>
-    <script src="/scripts/script_main.js"></script>
-    <link rel="stylesheet" href="/styles/styles_main.css" />
-    <link rel="icon" type="image/x-icon" href="/images/logo.png" />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  </head>
+  <%- include('partials/header') %>
 
   <body>
-    <div class="grid-wrapper">
-      <div class="logo"><img src="/images/logo.png" alt="Logo" /></div>
-      <div class="current-category">
-        <h1>ACTION</h1>
-      </div>
-      <div class="cart-search-wrapper">
-        <div class="cart-amount-wrapper">
-          <a href="/cart/getAll">
-            <img src="/images/kosarica.png" alt="Košarica" />
-          </a>
-          <p id="amount"><%=total%></p>
+    <main>
+      <div class="grid-wrapper">
+        <div class="logo"><img src="/images/logo.png" alt="Logo" /></div>
+        <div class="current-category">
+          <h1>ACTION</h1>
         </div>
-        <div class="search">
-          <img src="/images/trazilica.png" alt="Tražilica" />
+        <div class="cart-search-wrapper">
+          <div class="cart-amount-wrapper">
+            <a href="/cart/getAll">
+              <img src="/images/kosarica.png" alt="Košarica" />
+            </a>
+            <p id="amount"><%=total%></p>
+          </div>
+          <div class="search">
+            <img src="/images/trazilica.png" alt="Tražilica" />
+          </div>
         </div>
+        <ul class="category-menu">
+          <%for(category of data.categories) {%>
+          <li>
+            <a href="/home/getProducts/<%=category.id%>"><%=category.name%></a>
+          </li>
+          <%}%>
+        </ul>
+        <div class="hello-wrapper">
+          <h1 class="hello-text">DOBRODOŠLI U DUĆAN SPORTSKE OPREME ACTION</h1>
+          <img class="page-image" src="/images/pozadina.jpg" alt="Pozadina" />
+        </div>
+        <div class="info">
+          <p>KONTAKT</p>
+          <p>NEWSLETTER</p>
+          <p>PRETPLATI SE</p>
+        </div>
+        <div class="products-wrapper"></div>
       </div>
-      <ul class="category-menu">
-        <%for(category of data.categories) {%>
-        <li>
-          <a href="/home/getProducts/<%=category.id%>"><%=category.name%></a>
-        </li>
-        <%}%>
-      </ul>
-      <div class="hello-wrapper">
-        <h1 class="hello-text">DOBRODOŠLI U DUĆAN SPORTSKE OPREME ACTION</h1>
-        <img class="page-image" src="/images/pozadina.jpg" alt="Pozadina" />
-      </div>
-      <div class="info">
-        <p>KONTAKT</p>
-        <p>NEWSLETTER</p>
-        <p>PRETPLATI SE</p>
-      </div>
-      <div class="products-wrapper"></div>
-    </div>
+    </main>
+    <%- include('partials/footer') %>
   </body>
 </html>

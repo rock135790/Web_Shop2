@@ -2,7 +2,7 @@
 
 <html lang="hr">
   <head>
-    <title>WEB_lab</title>
+    <title>Action</title>
     <script src="/scripts/script_cart.js"></script>
     <link rel="stylesheet" href="/styles/styles_cart.css" />
     <link rel="icon" type="image/x-icon" href="/images/logo.png" />
@@ -11,43 +11,46 @@
   </head>
 
   <body>
-    <div class="header-wrapper">
-      <div class="logo"><img src="/images/logo.png" alt="Logo" /></div>
-      <div class="break"></div>
-      <div class="current-category"><h1>ACTION</h1></div>
-      <div class="cart-search-wrapper">
-        <div class="cart">
-          <a href="/home/getCategories">
-            <img src="/images/kosarica.png" alt="Košarica" />
-          </a>
-          <p id="amount"><%=cart.total%></p>
-        </div>
-        <div class="search">
-          <img src="/images/trazilica.png" alt="Tražilica" />
-        </div>
-      </div>
-    </div>
-    <div class="cart-header-wrapper">
-      <h2 class="cart-header">KOŠARICA</h2>
-      <a href="/cart/removeAll"><p>ISPRAZNI KOŠARICU</p></a>
-    </div>
-    <div class="first-row-wrapper">
-      <h3>NAZIV PROIZVODA</h3>
-      <h3>KOLIČINA</h3>
-    </div>
-    <div class="display-wrapper">
-      <% for(let product in cart) {%> <% if(product !== 'total'){%>
-      <div class="display">
-        <div class="product">
-          <p><%=product%></p>
-        </div>
-        <div class="product-amount">
-          <a href="/cart/remove/<%=product%>">-</a>
-          <p><%=cart[product]%></p>
-          <a href="/cart/add/<%=product%>">+</a>
+    <main>
+      <div class="header-wrapper">
+        <div class="logo"><img src="/images/logo.png" alt="Logo" /></div>
+        <div class="break"></div>
+        <div class="current-category"><h1>ACTION</h1></div>
+        <div class="cart-search-wrapper">
+          <div class="cart">
+            <a href="/home/getCategories">
+              <img src="/images/kosarica.png" alt="Košarica" />
+            </a>
+            <p id="amount"><%=cart.total%></p>
+          </div>
+          <div class="search">
+            <img src="/images/trazilica.png" alt="Tražilica" />
+          </div>
         </div>
       </div>
-      <%}}%>
-    </div>
+      <div class="cart-header-wrapper">
+        <h2 class="cart-header">KOŠARICA</h2>
+        <a href="#" onclick="dumpProducts(event)"><p>ISPRAZNI KOŠARICU</p></a>
+      </div>
+      <div class="first-row-wrapper">
+        <h3>NAZIV PROIZVODA</h3>
+        <h3>KOLIČINA</h3>
+      </div>
+      <div class="display-wrapper">
+        <% for(let product in cart) {%> <% if(product !== 'total'){%>
+        <div class="display">
+          <div class="product">
+            <p><%=product%></p>
+          </div>
+          <div class="product-amount">
+            <a href="#" onclick="removeProduct('<%=product%>', event)">-</a>
+            <p><%=cart[product]%></p>
+            <a href="#" onclick="addProduct('<%=product%>', event)">+</a>
+          </div>
+        </div>
+        <%}}%>
+      </div>
+    </main>
+    <%- include('partials/footer') %>
   </body>
 </html>
